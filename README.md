@@ -24,6 +24,8 @@ Spring-Cloud MicroServices相关学习
 | consumer-hystrix-cluster   | 6012、6013 | 消费者-容错处理-集群                 |
 | hystrix-turbine            | 6014       | 容错集群监控                         |
 | api-gateway-zuul           | 6015       | API路由网关                          |
+| cloud-config-server        | 6016       | 集中配置-服务端                      |
+| cloud-config-client        | 6017       | 集中配置-客户端                      |
 
 消费者和提供者是可以相互替换位置的，有时候该工程被调用，就是提供者，有时候该工程调用别的，就是消费者。因此，Ribbon，Feign，Hystrix可以用于任何工程。
 
