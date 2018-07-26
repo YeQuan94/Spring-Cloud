@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: provider-cluster # ConfigDirectory 的 Application 名称
+  cloud:
+    config:
+      # Config Server 路径
+      uri: http://localhost:6016
+      profile: test
+      label: master

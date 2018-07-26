@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: consumer-hystrix-cluster # 注册到EurekaServer上的名字
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6001/eureka/
+  instance:
+    prefer-ip-address: true # 将IP注册到EurekaServer上
+# 在yml中配置属性来自定义Ribbon的负载均衡规则
+provider-cluster: # 这里的名字是 提供者 ，而不是 消费者
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+# 想要被HystrixDashboard监控的话，必须添加以下内容
+# 同时在Hystrix输入的链接为：http://hostname:port/actuator/hystrix.stream
+# SpringBoot 2.0 以后的Actuator必须加入/actuator才行
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+---
+spring:
+  profiles: cluster1 # 指定profile名字
+server:
+  port: 6012
+---
+spring:
+  profiles: cluster2 # 指定profile名字
+server:
+  port: 6013
+---

@@ -1,0 +1,12 @@
+server:
+  port: 6005
+eureka:
+  client:
+    register-with-eureka: false # 默认true | 是否注册到Euraka，因为自己就是Server，所以false
+    fetch-registry: false # 默认true | 是否从EurakaServer获取数据，由于是单机，所以false
+    service-url:
+      defaultZone: http://user:password@localhost:6005/eureka/ # Eureka 2.0 这个属性无法自动提示
+#spring:
+#  autoconfigure:
+#    exclude:
+#      org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration

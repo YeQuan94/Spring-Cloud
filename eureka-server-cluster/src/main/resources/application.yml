@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: eureka-server-cluster
+---
+spring:
+  profiles: cluster1 # 指定profile名字
+server:
+  port: 6003
+eureka:
+  instance:
+    hostname: cluster1
+  client:
+    service-url:
+      defaultZone: http://cluster2:6004/eureka/ # Eureka 2.0 这个属性无法自动提示
+---
+spring:
+  profiles: cluster2 # 指定profile名字
+server:
+  port: 6004
+eureka:
+  instance:
+    hostname: cluster2
+  client:
+    service-url:
+      defaultZone: http://cluster1:6003/eureka/ # Eureka 2.0 这个属性无法自动提示
+---
+
+# 在/etc/hosts中配置 cluster1和cluster2为127.0.0.1
+
+# 使用Maven的Install命令打包项目成Jar
+# 进入到Jar包所在目录
+# 执行: java -jar eureka-server-cluster-0.0.1-SNAPSHOT.jar --spring.profiles.active=cluster1
+# 执行: java -jar eureka-server-cluster-0.0.1-SNAPSHOT.jar --spring.profiles.active=cluster2
+# 在Chrome中访问localhost:6003和localhost:6004即可看到效果

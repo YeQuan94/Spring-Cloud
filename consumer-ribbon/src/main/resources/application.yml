@@ -1,0 +1,15 @@
+server:
+  port: 6006
+spring:
+  application:
+    name: consumer-ribbon # 注册到EurekaServer上的名字
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6001/eureka/
+  instance:
+    prefer-ip-address: true # 将IP注册到EurekaServer上
+# 在yml中配置属性来自定义Ribbon的负载均衡规则
+provider-cluster: # 这里的名字是 提供者 ，而不是 消费者
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule

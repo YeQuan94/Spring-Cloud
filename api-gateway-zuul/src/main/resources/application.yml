@@ -1,0 +1,22 @@
+server:
+  port: 6015
+spring:
+  application:
+    name: api-gateway-zuul # 注册到EurekaServer上的名字
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6001/eureka/
+  instance:
+    prefer-ip-address: true # 将IP注册到EurekaServer上
+# Actuator 2.0 版本的访问路径为：IP:Port/actuator/xxx（任意功能页面）
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream,routes
+# zuul的自定义配置，可以参考网上的详细配置
+zuul:
+  routes:
+    provider-cluster: /provider/** # 给应用名称自定义访问路径
+  ignored-services: provider-cluster # 忽略某个微服务，多个微服务使用","隔开

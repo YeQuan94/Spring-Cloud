@@ -1,0 +1,12 @@
+server:
+  port: 6002
+spring:
+  application:
+    name: eureka-client # 注册到EurekaServer上的名字
+eureka:
+  client:
+    service-url:
+      # defaultZone: http://localhost:6001/eureka/ # Eureka 2.0 这个属性无法自动提示
+      defaultZone: http://cluster1:6003/eureka/,http://cluster2:6004/eureka/ # 集群方式配置
+  instance:
+    prefer-ip-address: true # 将IP注册到EurekaServer上

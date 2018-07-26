@@ -1,0 +1,19 @@
+server:
+  port: 6016
+spring:
+  application:
+    name: cloud-config-server # 注册到EurekaServer上的名字
+  cloud:
+    config:
+      server:
+        git:
+          # Cloud Config 版本决定以下路径如何编写
+          # yml或者properties存放路径
+          uri: https://github.com/YeQuan94/Spring-Cloud.git
+          # 目录
+          search-paths: config-directory
+          # uri: file:///Users/CrazyCoder/IdeaProjects/Spring-Cloud/cloud-config-server/config-directory
+          # Git账号
+          username:
+          # Git密码
+          password:

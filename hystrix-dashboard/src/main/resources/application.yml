@@ -1,0 +1,11 @@
+server:
+  port: 6011
+spring:
+  application:
+    name: hystrix-dashboard # 注册到EurekaServer上的名字
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6001/eureka/
+  instance:
+    prefer-ip-address: true # 将IP注册到EurekaServer上
